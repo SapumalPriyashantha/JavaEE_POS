@@ -1,0 +1,89 @@
+12-Mar-2022 03:45:24.195 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/8.5.76
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Feb 23 2022 17:59:11 UTC
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 8.5.76.0
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 10
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk1.8.0_271\jre
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_271-b09
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=D:/IJSE/Advanced API Development/2022..03..07/apache-tomcat-8.5.76/conf/logging.properties
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=D:/IJSE/Advanced API Development/2022..03..07/apache-tomcat-8.5.76
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=D:/IJSE/Advanced API Development/2022..03..07/apache-tomcat-8.5.76
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=D:/IJSE/Advanced API Development/2022..03..07/apache-tomcat-8.5.76/temp
+12-Mar-2022 03:45:24.210 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_271\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\ASUS\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\ASUS\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Program Files\Java\jdk1.8.0_271\bin;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0;%SYSTEMROOT%\System32\OpenSSH;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\ASUS\AppData\Local\Microsoft\WindowsApps;C:\Users\ASUS\AppData\Roaming\npm;C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.1\bin;C:\Users\ASUS\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;.]
+12-Mar-2022 03:45:25.231 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+12-Mar-2022 03:45:25.262 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 1453 ms
+12-Mar-2022 03:45:25.294 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+12-Mar-2022 03:45:25.294 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/8.5.76]
+12-Mar-2022 03:45:25.294 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\docs]
+12-Mar-2022 03:45:25.576 WARNING [localhost-startStop-1] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [141] milliseconds.
+12-Mar-2022 03:45:25.593 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\docs] has finished in [299] ms
+12-Mar-2022 03:45:25.593 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\examples]
+12-Mar-2022 03:45:25.780 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\examples] has finished in [187] ms
+12-Mar-2022 03:45:25.780 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\host-manager]
+12-Mar-2022 03:45:25.796 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\host-manager] has finished in [16] ms
+12-Mar-2022 03:45:25.796 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\manager]
+12-Mar-2022 03:45:25.811 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\manager] has finished in [15] ms
+12-Mar-2022 03:45:25.811 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\ROOT]
+12-Mar-2022 03:45:25.827 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\ROOT] has finished in [16] ms
+12-Mar-2022 03:45:25.827 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+12-Mar-2022 03:45:25.858 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 585 ms
+12-Mar-2022 03:46:22.930 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+12-Mar-2022 03:46:22.930 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+12-Mar-2022 03:46:23.081 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+12-Mar-2022 03:46:23.114 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+12-Mar-2022 03:46:23.127 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/8.5.76
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Feb 23 2022 17:59:11 UTC
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 8.5.76.0
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 10
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk1.8.0_271\jre
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_271-b09
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=D:/IJSE/Advanced API Development/2022..03..07/apache-tomcat-8.5.76/conf/logging.properties
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=D:/IJSE/Advanced API Development/2022..03..07/apache-tomcat-8.5.76
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=D:/IJSE/Advanced API Development/2022..03..07/apache-tomcat-8.5.76
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=D:/IJSE/Advanced API Development/2022..03..07/apache-tomcat-8.5.76/temp
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded Apache Tomcat Native library [1.2.31] using APR version [1.7.0].
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [{4}].
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+12-Mar-2022 03:46:38.438 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.1.1l  24 Aug 2021]
+12-Mar-2022 03:46:38.533 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+12-Mar-2022 03:46:38.548 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 413 ms
+12-Mar-2022 03:46:38.564 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+12-Mar-2022 03:46:38.564 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/8.5.76]
+12-Mar-2022 03:46:38.564 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\docs]
+12-Mar-2022 03:46:38.831 WARNING [localhost-startStop-1] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [126] milliseconds.
+12-Mar-2022 03:46:38.846 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\docs] has finished in [282] ms
+12-Mar-2022 03:46:38.846 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\examples]
+12-Mar-2022 03:46:39.018 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\examples] has finished in [172] ms
+12-Mar-2022 03:46:39.018 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\host-manager]
+12-Mar-2022 03:46:39.050 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\host-manager] has finished in [32] ms
+12-Mar-2022 03:46:39.050 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\manager]
+12-Mar-2022 03:46:39.062 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\manager] has finished in [12] ms
+12-Mar-2022 03:46:39.062 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\ROOT]
+12-Mar-2022 03:46:39.066 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\IJSE\Advanced API Development\2022..03..07\apache-tomcat-8.5.76\webapps\ROOT] has finished in [4] ms
+12-Mar-2022 03:46:39.066 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+12-Mar-2022 03:46:39.081 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 535 ms
+12-Mar-2022 03:46:48.574 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+12-Mar-2022 03:46:48.574 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+12-Mar-2022 03:46:48.700 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+12-Mar-2022 03:46:48.730 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+12-Mar-2022 03:46:48.745 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]

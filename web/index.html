@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment_12_css framework</title>
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+          rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+        main {
+            position: absolute;
+            top: 56px;
+        }
+
+        main > section {
+            border: 1px solid black;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-light  fixed-top shadow " style="background-color: #f8feff;">
+        <div class="container-fluid ">
+            <a class="navbar-brand">
+                <img alt="shop icon" height="24" src="assests/img/shop.png" width="30">
+                Nawaloka City
+            </a>
+            <button aria-controls="offcanvasNavbar" class="navbar-toggler" data-bs-target="#offcanvasNavbar"
+                    data-bs-toggle="offcanvas"
+                    type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div aria-labelledby="offcanvasNavbarLabel" class="offcanvas offcanvas-end" id="offcanvasNavbar"
+                 tabindex="-1">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">portfolio</h5>
+                    <button aria-label="Close" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            type="button"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ">
+                        <li class="nav-item  " id="customer">
+                            <a aria-current="page" class="nav-link active" href="#one">Customer</a>
+                        </li>
+                        <li class="nav-item" id="item">
+                            <a aria-current="page" class="nav-link active" href="#two">Item</a>
+                        </li>
+                        <li class="nav-item" id="order">
+                            <a aria-current="page" class="nav-link active" href="#three">Order</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="container-fluid">
+    <section class="row" id="first_row">
+        <dfn id="one"></dfn>
+        <h1 class="d-flex justify-content-center fw-bold fst-italic text-success">customer</h1>
+        <div class="col-4">
+            <div>
+                <h3 class="fw-bold fst-italic">Customer</h3>
+                <form>
+                    <div class="d-flex">
+                        <input aria-label="Search" class="form-control me-2" id="txtSearchCustomer"
+                               placeholder="Search Customer" type="search">
+                        <button class="btn btn-outline-success" id="btnSearchCustomer" type="submit">Search</button>
+                    </div>
+                    <div>
+                        <label class="form-label" for="exampleInputCustomerId_1">Customer Id</label>
+                        <input class="form-control" id="exampleInputCustomerId_1">
+                        <p><small class="text-danger pl-1" id="error_1"></small></p>
+                    </div>
+                    <div>
+                        <label class="form-label" for="exampleInputCustomerName_1">Customer Name</label>
+                        <input class="form-control" id="exampleInputCustomerName_1">
+                        <p><small class="text-danger pl-1" id="error_2"></small></p>
+                    </div>
+                    <div>
+                        <label class="form-label" for="exampleInputCustomerAddress_1">Customer Address</label>
+                        <input class="form-control" id="exampleInputCustomerAddress_1">
+                        <p><small class="text-danger pl-1" id="error_3"></small></p>
+                    </div>
+                    <button class="btn btn-primary mt-2" id="btn_custoomer_save" type="submit">Save</button>
+                    <button class="btn btn-warning mt-2" id="btn_customer_update" type="submit">Update</button>
+                    <button class="btn btn-danger mt-2" id="btn_delete" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+        <div class="col table-responsive">
+            <h3 class="fw-bold fst-italic">Customer Details</h3>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Customer Id</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Customer address</th>
+                </tr>
+                </thead>
+                <tbody id="customer_Table">
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="row mt-4" id="second_row">
+        <dfn id="two"></dfn>
+        <h1 class="d-flex justify-content-center fw-bold fst-italic text-success mt-2">Item</h1>
+        <div class="col-4">
+            <div>
+                <h3 class="fw-bold fst-italic">Item</h3>
+                <form>
+                    <div class="d-flex">
+                        <input aria-label="Search" class="form-control me-2" id="txtSearchItem"
+                               placeholder="Search Item" type="search">
+                        <button class="btn btn-outline-success" id="btnSearchItem" type="submit">Search</button>
+                    </div>
+                    <div>
+                        <label class="form-label" for="exampleInputItemId_1">Item Id</label>
+                        <input class="form-control" id="exampleInputItemId_1">
+                        <p><small class="text-danger pl-1" id="error_4"></small></p>
+                    </div>
+                    <div>
+                        <label class="form-label" for="exampleInputItemName_1">Item Name</label>
+                        <input class="form-control" id="exampleInputItemName_1">
+                        <p><small class="text-danger pl-1" id="error_5"></small></p>
+                    </div>
+                    <div>
+                        <label class="form-label" for="exampleInputItemPrice_1">Item Price</label>
+                        <input class="form-control" id="exampleInputItemPrice_1">
+                        <p><small class="text-danger pl-1" id="error_6"></small></p>
+                    </div>
+                    <div>
+                        <label class="form-label" for="exampleInputItemQuantity_1">Item Quantity</label>
+                        <input class="form-control" id="exampleInputItemQuantity_1">
+                        <p><small class="text-danger pl-1" id="error_7"></small></p>
+                    </div>
+                    <button class="btn btn-primary mt-2" id="btn_item_save" type="submit">Save</button>
+                    <button class="btn btn-warning mt-2" id="btn_item_update" type="submit">Update</button>
+                    <button class="btn btn-danger mt-2" id="btn_item_delete" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+        <div class="col table-responsive">
+            <h3 class="fw-bold fst-italic">Item Details</h3>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Item Id</th>
+                    <th scope="col">Item Name</th>
+                    <th scope="col">Item Price</th>
+                    <th scope="col">Item Quantity</th>
+                </tr>
+                </thead>
+                <tbody id="item_Table">
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="row mt-4" id="third_row">
+        <dfn id="three"></dfn>
+        <h1 class="d-flex justify-content-center fw-bold fst-italic text-success mt-2">Order</h1>
+        <div class="row">
+            <div class="col-4">
+                <div>
+                    <h3 class="fw-bold fst-italic">Invoice Details</h3>
+                    <form>
+                        <div>
+                            <label class="form-label">Order Id</label>
+                            <input class="form-control" id="orderId">
+                        </div>
+                        <div>
+                            <label class="form-label">Order Date</label>
+                            <div class="input-group date" id="datepicker">
+                                <input class="form-control" type="text">
+                                <span class="input-group-append">
+                                  <span class="input-group-text bg-white d-block">
+                                     <i class="fa fa-calendar"></i></span></span>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label">Select Customer</label>
+
+                            <select class="form-select form-select-ls" id="dropdown_customer" aria-label=".form-select-lg example">
+
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label" for="exampleInputCustomerID">Customer Id</label>
+                            <input class="form-control" id="exampleInputCustomerID">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-4">
+                <h3 class="fw-bold fst-italic">Select Item</h3>
+                <form>
+                    <div>
+                        <label class="form-label">Select Item</label>
+                        <select class="form-select form-select-ls" id="dropdown_item" aria-label=".form-select-lg example">
+
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label" for="exampleInputItem_Id_1">Item Id</label>
+                        <input aria-describedby="emailHelp" class="form-control" id="exampleInputItem_Id_1">
+                    </div>
+                    <div>
+                        <label class="form-label" for="exampleInputItem_Price">Item Price</label>
+                        <input aria-describedby="emailHelp" class="form-control" id="exampleInputItem_Price">
+                    </div>
+                    <div>
+                        <label class="form-label" for="exampleInputItem_QTyOnHand">QTY On Hand</label>
+                        <input aria-describedby="emailHelp" class="form-control" id="exampleInputItem_QTyOnHand">
+                    </div>
+                    <div>
+                        <label class="form-label" for="exampleInputOrder_QTy">Order QTY </label>
+                        <input aria-describedby="emailHelp" class="form-control" id="exampleInputOrder_QTy">
+                    </div>
+                    <button class="btn btn-primary mt-2" id="save_order" type="submit">Add to Cart</button>
+                </form>
+            </div>
+            <div class="col mt-4">
+                <form>
+                    <div>
+                        <label class="form-label" for="exampleInputTotal_price">Total Price :</label>
+                        <input aria-describedby="emailHelp" class="form-control" id="exampleInputTotal_price">
+                    </div>
+                    <div>
+                        <label class="form-label" for="exampleInputCash">Cash :</label>
+                        <input class="form-control" id="exampleInputCash">
+                    </div>
+                    <button class="btn btn-primary mt-4" id="purchase" type="submit">Purchase</button>
+                    <div>
+                        <label class="form-label mt-4" for="exampleInputRemaining">Remaining :</label>
+                        <input class="form-control" id="exampleInputRemaining">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col table-responsive">
+                <h3 class="fw-bold fst-italic">Order Details</h3>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Item Code</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody id="order_table">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<script crossorigin="anonymous"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/jQuery/jquery-3.6.0.min.js"></script>
+
+<!--<script src="model/Customer.js"></script>-->
+<!--<script src="model/Item.js"></script>-->
+<!--<script src="model/Cart.js"></script>-->
+<!--<script src="model/Orders.js"></script>-->
+<!--<script src="model/OrderDetails.js"></script>-->
+
+<!--<script src="controller/CustomerController.js"></script>-->
+<!--<script src="controller/ItemController.js"></script>-->
+
+<!--<script src="controller/OrderController.js"></script>-->
+
+<!--<script src="assets/js/script.js"></script>-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#datepicker').datepicker();
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+</script>
+
+</body>
+</html>

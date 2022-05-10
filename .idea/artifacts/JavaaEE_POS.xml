@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="JavaaEE_POS">
+    <output-path>$PROJECT_DIR$/out/artifacts/JavaaEE_POS</output-path>
+    <root id="archive" name="JavaaEE_POS.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="JavaEE_POS" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mysql-connector-java-8.0.25" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="JavaEE_POS/web/Web" />
+    </root>
+  </artifact>
+</component>
