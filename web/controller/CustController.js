@@ -30,6 +30,10 @@ $("#exampleInputCustomerAddress_1").keydown(function (event) {
     }
 });
 
+$('#exampleInputCustomerId_1,#exampleInputCustomerName_1,#exampleInputCustomerAddress_1').on('keyup', function () {
+    allCustomersValidation();
+});
+
 $("#btn_custoomer_save").click(function () {
     //Disable previously tr binded function
 
@@ -68,7 +72,9 @@ function getCustomerData() {
             }
         })
 }
+
 loadAllCustomersIntoTable();
+
 function loadAllCustomersIntoTable() {
     $("#customer_Table").empty();
     $.ajax({
@@ -84,6 +90,31 @@ function loadAllCustomersIntoTable() {
         }
     });
 }
+
+$("#btnSearchCustomer").click(function () {
+    var searchID = $("#txtSearchCustomer").val();
+    $.ajax({
+        url: "customer?option=SEARCH&searchCustomerName="+searchID,
+        method: "GET",
+
+        // dataType:"json", // please convert the response into JSON
+        success: function (res) {
+            if (res.status == 200) {
+                $("#exampleInputCustomerId_1").val(res.data.id);
+                $("#exampleInputCustomerName_1").val(res.data.name);
+                $("#exampleInputCustomerAddress_1").val(res.data.address);
+            } else {
+                alert(res.data);
+            }
+
+        },
+        error: function (ob, textStatus, error) {
+            console.log(ob);
+            console.log(textStatus);
+            console.log(error);
+        }
+    });
+});
 
 function clickCustomerTableRowAndGetdata() {
 
@@ -110,7 +141,6 @@ $("#btn_delete").click(function () {
         method: "DELETE",
         //data:data,// application/x-www-form-urlencoded
         success: function (res) {
-            console.log(res);
             if (res.status == 200) {
                 alert(res.message);
                 loadAllCustomersIntoTable();
