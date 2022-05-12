@@ -1,21 +1,21 @@
 //customer
 $("#exampleInputCustomerId_1").keydown(function (event) {
     setButton()
-    if (event.key == "Shift") {
+    if (event.key == "Enter") {
         $("#exampleInputCustomerName_1").focus();
     }
 });
 
 $("#exampleInputCustomerName_1").keydown(function (event) {
     setButton()
-    if (event.key == "Shift") {
+    if (event.key == "Enter") {
         $("#exampleInputCustomerAddress_1").focus();
     }
 });
 
 $("#exampleInputCustomerAddress_1").keydown(function (event) {
     setButton()
-    if (event.key == "Shift") {
+    if (event.key == "Enter") {
 
         //Disable previously tr binded function
         $("#customer_Table>tr").off("click");
@@ -50,52 +50,64 @@ $("#btn_custoomer_save").click(function () {
 
 });
 
-$('#exampleInputCustomerId_1,#exampleInputCustomerName_1,#exampleInputCustomerAddress_1').on('keyup', function () {
-    allCustomersValidation();
-});
+// $('#exampleInputCustomerId_1,#exampleInputCustomerName_1,#exampleInputCustomerAddress_1').on('keyup', function () {
+//     allCustomersValidation();
+// });
 
 function getCustomerData() {
+        var data = $("#customerForm").serialize(); // return query string of form with name:type-value
+        $.ajax({
+            url: "customer",
+            method: "POST",
+            data: data,// if we send data with the request
+            success: function (res) {
+                if (res.status == 200) {
+                    alert(res.message);
+                    // loadAllCustomers();
+                } else {
+                    alert(res.data);
+                }
 
-    let custId = $("#exampleInputCustomerId_1").val(); //get first input field value
-    let custName = $("#exampleInputCustomerName_1").val(); //get second input field value
-    let custAdress = $("#exampleInputCustomerAddress_1").val(); //get third input field value
-
-    var customer = new CustomerDTO(custId, custName, custAdress);
-
-    customerDB.push(customer);
+            },
+            error: function (ob, textStatus, error) {
+                console.log(ob);
+                console.log(textStatus);
+                console.log(error);
+            }
+        })
 }
 
-function loadAllCustomersIntoTable() {
-    $("#customer_Table").empty();
-    for (var i of customerDB) {
-        /*create a html row*/
-        let row = "<tr><td>" + i.id + "</td><td>" + i.name + "</td><td>" + i.address + "</td></tr>";
-        //set the row
-        $("#customer_Table").append(row);
-    }
-}
+// function loadAllCustomersIntoTable() {
+//     $("#customer_Table").empty();
+//     for (var i of customerDB) {
+//         /*create a html row*/
+//         let row = "<tr><td>" + i.id + "</td><td>" + i.name + "</td><td>" + i.address + "</td></tr>";
+//         //set the row
+//         $("#customer_Table").append(row);
+//     }
+// }
 
-$("#btnSearchCustomer").click(function () {
-    var searchID = $("#txtSearchCustomer").val();
+// $("#btnSearchCustomer").click(function () {
+//     var searchID = $("#txtSearchCustomer").val();
+//
+//     var response = searchCustomer(searchID);
+//     if (response) {
+//         $("#exampleInputCustomerId_1").val(response.id);
+//         $("#exampleInputCustomerName_1").val(response.name);
+//         $("#exampleInputCustomerAddress_1").val(response.address);
+//     } else {
+//         clearCustomerInputFeild();
+//         alert("No Such a Customer");
+//     }
+// });
 
-    var response = searchCustomer(searchID);
-    if (response) {
-        $("#exampleInputCustomerId_1").val(response.id);
-        $("#exampleInputCustomerName_1").val(response.name);
-        $("#exampleInputCustomerAddress_1").val(response.address);
-    } else {
-        clearCustomerInputFeild();
-        alert("No Such a Customer");
-    }
-});
-
-function searchCustomer(id) {
-    for (let i = 0; i < customerDB.length; i++) {
-        if (customerDB[i].id == id) {
-            return customerDB[i];
-        }
-    }
-}
+// function searchCustomer(id) {
+//     for (let i = 0; i < customerDB.length; i++) {
+//         if (customerDB[i].id == id) {
+//             return customerDB[i];
+//         }
+//     }
+// }
 
 $("#btn_customer_update").click(function () {
     let custId = $("#exampleInputCustomerId_1").val(); //get first input field value

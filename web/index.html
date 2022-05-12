@@ -26,7 +26,7 @@
     <nav class="navbar navbar-light  fixed-top shadow " style="background-color: #f8feff;">
         <div class="container-fluid ">
             <a class="navbar-brand">
-                <img alt="shop icon" height="24" src="assests/img/shop.png" width="30">
+                <img alt="shop icon" height="24" src="assets/img/shop.png" width="30">
                 Nawaloka City
             </a>
             <button aria-controls="offcanvasNavbar" class="navbar-toggler" data-bs-target="#offcanvasNavbar"
@@ -65,7 +65,7 @@
         <div class="col-4">
             <div>
                 <h3 class="fw-bold fst-italic">Customer</h3>
-                <form>
+                <form id="customerForm">
                     <div class="d-flex">
                         <input aria-label="Search" class="form-control me-2" id="txtSearchCustomer"
                                placeholder="Search Customer" type="search">
@@ -73,17 +73,17 @@
                     </div>
                     <div>
                         <label class="form-label" for="exampleInputCustomerId_1">Customer Id</label>
-                        <input class="form-control" id="exampleInputCustomerId_1">
+                        <input class="form-control" id="exampleInputCustomerId_1" name="customerId">
                         <p><small class="text-danger pl-1" id="error_1"></small></p>
                     </div>
                     <div>
                         <label class="form-label" for="exampleInputCustomerName_1">Customer Name</label>
-                        <input class="form-control" id="exampleInputCustomerName_1">
+                        <input class="form-control" id="exampleInputCustomerName_1" name="customerName">
                         <p><small class="text-danger pl-1" id="error_2"></small></p>
                     </div>
                     <div>
                         <label class="form-label" for="exampleInputCustomerAddress_1">Customer Address</label>
-                        <input class="form-control" id="exampleInputCustomerAddress_1">
+                        <input class="form-control" id="exampleInputCustomerAddress_1" name="customerAddress">
                         <p><small class="text-danger pl-1" id="error_3"></small></p>
                     </div>
                     <button class="btn btn-primary mt-2" id="btn_custoomer_save" type="button">Save</button>
@@ -272,16 +272,17 @@
         src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/jQuery/jquery-3.6.0.min.js"></script>
 
-<script src="model/Customer.js"></script>
-<script src="model/Item.js"></script>
-<script src="model/Cart.js"></script>
-<script src="model/Orders.js"></script>
-<script src="model/OrderDetails.js"></script>
+<!--<script src="model/Customer.js"></script>-->
+<!--<script src="model/Item.js"></script>-->
+<!--<script src="model/Cart.js"></script>-->
+<!--<script src="model/Orders.js"></script>-->
+<!--<script src="model/OrderDetails.js"></script>-->
 
-<script src="controller/CustomerController.js"></script>
-<script src="controller/ItemController.js"></script>
+<!--<script src="controller/CustomerController.js"></script>-->
+<script src="controller/CustController.js"></script>
+<!--<script src="controller/ItemController.js"></script>-->
 
-<script src="controller/OrderController.js"></script>
+<!--<script src="controller/OrderController.js"></script>-->
 
 <script src="assets/js/script.js"></script>
 
@@ -293,6 +294,29 @@
             $('#sidebar').toggleClass('active');
         });
     });
+
+    // $("#btn_custoomer_save").click(function () {
+    //     var data = $("#customerForm").serialize(); // return query string of form with name:type-value
+    //     $.ajax({
+    //         url: "customer",
+    //         method: "POST",
+    //         data: data,// if we send data with the request
+    //         success: function (res) {
+    //             if (res.status == 200) {
+    //                 alert(res.message);
+    //                 // loadAllCustomers();
+    //             } else {
+    //                 alert(res.data);
+    //             }
+    //
+    //         },
+    //         error: function (ob, textStatus, error) {
+    //             console.log(ob);
+    //             console.log(textStatus);
+    //             console.log(error);
+    //         }
+    //     })
+    // });
 </script>
 
 </body>
