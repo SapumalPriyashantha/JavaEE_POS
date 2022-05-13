@@ -92,9 +92,9 @@ function loadAllCustomersIntoTable() {
 }
 
 $("#btnSearchCustomer").click(function () {
-    var searchID = $("#txtSearchCustomer").val();
+    var searchName = $("#txtSearchCustomer").val();
     $.ajax({
-        url: "customer?option=SEARCH&searchCustomerName="+searchID,
+        url: "customer?option=SEARCH&searchCustomerName="+searchName,
         method: "GET",
 
         // dataType:"json", // please convert the response into JSON

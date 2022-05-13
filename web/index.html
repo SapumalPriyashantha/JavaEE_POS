@@ -114,7 +114,7 @@
         <div class="col-4">
             <div>
                 <h3 class="fw-bold fst-italic">Item</h3>
-                <form>
+                <form id="itemForm">
                     <div class="d-flex">
                         <input aria-label="Search" class="form-control me-2" id="txtSearchItem"
                                placeholder="Search Item" type="search">
@@ -122,22 +122,22 @@
                     </div>
                     <div>
                         <label class="form-label" for="exampleInputItemId_1">Item Id</label>
-                        <input class="form-control" id="exampleInputItemId_1">
+                        <input class="form-control" id="exampleInputItemId_1" name="itemId">
                         <p><small class="text-danger pl-1" id="error_4"></small></p>
                     </div>
                     <div>
                         <label class="form-label" for="exampleInputItemName_1">Item Name</label>
-                        <input class="form-control" id="exampleInputItemName_1">
+                        <input class="form-control" id="exampleInputItemName_1" name="itemName">
                         <p><small class="text-danger pl-1" id="error_5"></small></p>
                     </div>
                     <div>
                         <label class="form-label" for="exampleInputItemPrice_1">Item Price</label>
-                        <input class="form-control" id="exampleInputItemPrice_1">
+                        <input class="form-control" id="exampleInputItemPrice_1" name="itemPrice">
                         <p><small class="text-danger pl-1" id="error_6"></small></p>
                     </div>
                     <div>
                         <label class="form-label" for="exampleInputItemQuantity_1">Item Quantity</label>
-                        <input class="form-control" id="exampleInputItemQuantity_1">
+                        <input class="form-control" id="exampleInputItemQuantity_1" name="itemQTY">
                         <p><small class="text-danger pl-1" id="error_7"></small></p>
                     </div>
                     <button class="btn btn-primary mt-2" id="btn_item_save" type="button">Save</button>
@@ -274,7 +274,7 @@
 
 <script src="controller/CustController.js"></script>
 <!--<script src="controller/ItemController.js"></script>-->
-
+<script src="controller/ItmController.js"></script>
 <!--<script src="controller/OrderController.js"></script>-->
 
 <script src="assets/js/script.js"></script>
