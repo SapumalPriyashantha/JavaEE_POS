@@ -91,7 +91,7 @@ function loadAllItemsIntoTable() {
                 let row = `<tr><td>${item.id}</td><td>${item.name}</td><td>${item.price}</td><td>${item.qty}</td></tr>`;
                 $("#item_Table").append(row);
             }
-            clickCustomerTableRowAndGetdata();
+            clickItemTableRowAndGetdata();
         }
     });
 }
@@ -119,6 +119,64 @@ $("#btnSearchItem").click(function () {
             console.log(ob);
             console.log(textStatus);
             console.log(error);
+        }
+    });
+});
+
+$("#btn_item_delete").click(function () {
+    let itemId = $("#exampleInputItemId_1").val();
+
+    $.ajax({
+        url: "item?ItemId=" + itemId,// viya query string
+        method: "DELETE",
+        //data:data,// application/x-www-form-urlencoded
+        success: function (res) {
+            if (res.status == 200) {
+                alert(res.message);
+                loadAllItemsIntoTable();
+                clearItemInputFeild();
+            } else if (res.status == 400) {
+                alert(res.data);
+            } else {
+                alert(res.data);
+            }
+
+        },
+        error: function (ob, status, t) {
+            console.log(ob);
+            console.log(status);
+            console.log(t);
+        }
+    });
+});
+
+$("#btn_item_update").click(function () {
+    //creating a js object with relevant data which you wanna send to the server
+    var itemOb = {
+        id: $("#exampleInputItemId_1").val(),
+        name: $("#exampleInputItemName_1").val(),
+        price: $("#exampleInputItemPrice_1").val(),
+        qty: $("#exampleInputItemQuantity_1").val(),
+    }
+
+    $.ajax({
+        url: "item",
+        method: "PUT",
+        contentType: "application/json", //You should state request's content type using MIME types
+        data: JSON.stringify(itemOb), // format js object to valid json string
+        success: function (res) {
+            if (res.status == 200) { // process is  ok
+                alert(res.message);
+                loadAllItemsIntoTable();
+                clearItemInputFeild();
+            } else if (res.status == 400) { // there is a problem with the client side
+                alert(res.message);
+            } else {
+                alert(res.data); // else maybe there is an exception
+            }
+        },
+        error: function (ob, errorStus) {
+            console.log(ob); // other errors
         }
     });
 });
