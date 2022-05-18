@@ -70,7 +70,7 @@ function getOrderData() {
                     }
                 }
             } else {
-                alert("Quantity size is insufficient for order 2");
+                alert("Quantity size is insufficient for order");
             }
         } else {
             var cart = new CartDTO(item_id, item_name, item_price, item_qty, item_total);
@@ -78,7 +78,7 @@ function getOrderData() {
             countAllItemTotal();
         }
     } else {
-        alert("Quantity size is insufficient for order 1");
+        alert("Quantity size is insufficient for order");
     }
 }
 
@@ -118,21 +118,21 @@ function placeOrder() {
     let customerId = $("#exampleInputCustomerID").val();
     let orderTotal = $("#exampleInputTotal_price").val();
 
-    var order = new OrdersDTO(orderId, orderDate, customerId, orderTotal);
-
-    orderDB.push(order);
-
-    for (let i = 0; i < cartDB.length; i++) {
-        var orderDetails = new OrdersDetailsDTO(orderId, customerId, cartDB[i].id, cartDB[i].price, cartDB[i].qty, cartDB[i].total);
-        orderDetailsDB.push(orderDetails);
-
-        for (let j = 0; j < itemDB.length; j++) {
-            if (cartDB[i].id == itemDB[j].id) {
-                (itemDB[j].qty) = (+itemDB[j].qty) - (+cartDB[i].qty);
-            }
-        }
-    }
-    cartDB.splice(0, cartDB.length);
+    // var order = new OrdersDTO(orderId, orderDate, customerId, orderTotal);
+    //
+    // orderDB.push(order);
+    //
+    // for (let i = 0; i < cartDB.length; i++) {
+    //     var orderDetails = new OrdersDetailsDTO(orderId, customerId, cartDB[i].id, cartDB[i].price, cartDB[i].qty, cartDB[i].total);
+    //     orderDetailsDB.push(orderDetails);
+    //
+    //     for (let j = 0; j < itemDB.length; j++) {
+    //         if (cartDB[i].id == itemDB[j].id) {
+    //             (itemDB[j].qty) = (+itemDB[j].qty) - (+cartDB[i].qty);
+    //         }
+    //     }
+    // }
+    // cartDB.splice(0, cartDB.length);
     clearInputFeilds();
 
 }

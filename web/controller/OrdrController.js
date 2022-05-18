@@ -56,3 +56,126 @@ $("#dropdown_item").click(function () {
     });
 
 });
+
+function getOrderData() {
+    let item_id = $("#exampleInputItem_Id_1").val();
+    let item_name = $("#dropdown_item").val();
+    let item_price = $("#exampleInputItem_Price").val();
+    let item_qty = $("#exampleInputOrder_QTy").val();
+    let item_QTYOnHand = $("#exampleInputItem_QTyOnHand").val();
+    let item_total = item_price * item_qty;
+
+    if ((+item_qty) < (+item_QTYOnHand)) {
+        let response = searchItem(item_id);
+        if (response) {
+            let current_qty = response.qty;
+            let currentTotal = response.total;
+
+            if ((+item_QTYOnHand) > (+current_qty) + (+item_qty)) {
+                for (let i = 0; i < cartDB.length; i++) {
+                    if (cartDB[i].id == response.id) {
+                        cartDB.splice(i, 1);
+
+                        var cart = new CartDTO(item_id, item_name, item_price, (+current_qty) + (+item_qty), (+currentTotal) + (+item_total));
+                        cartDB.push(cart);
+
+                        countAllItemTotal();
+                    }
+                }
+            } else {
+                alert("Quantity size is insufficient for order");
+            }
+        } else {
+            var cart = new CartDTO(item_id, item_name, item_price, item_qty, item_total);
+            cartDB.push(cart);
+            countAllItemTotal();
+        }
+    } else {
+        alert("Quantity size is insufficient for order");
+    }
+}
+
+function searchItem(id) {
+    for (let i = 0; i < cartDB.length; i++) {
+        if (cartDB[i].id == id) {
+            return cartDB[i];
+        }
+    }
+}
+
+function countAllItemTotal() {
+    let allTotal = 0;
+    for (let i = 0; i < cartDB.length; i++) {
+        allTotal = (+allTotal) + (+cartDB[i].total);
+    }
+    $("#exampleInputTotal_price").val(allTotal);
+}
+
+$("#purchase").click(function () {
+    let total = $("#exampleInputTotal_price").val();
+    let cash = $("#exampleInputCash").val();
+
+    if ((+cash) >= (+total)) {
+        $("#exampleInputRemaining").val((+cash) - (+total));
+        placeOrder();
+        generateOrderId();
+    } else {
+        alert("There is not enough money for the order");
+    }
+
+});
+
+function clearInputFeilds() {
+    $("#exampleInputItem_Id_1").val(null);
+    $("#exampleInputItem_Price").val(null);
+    $("#exampleInputItem_QTyOnHand").val(null);
+
+    $("#exampleInputTotal_price").val(null);
+    $("#exampleInputCash").val(null);
+
+    $("#exampleInputCustomerID").val(null);
+}
+
+function loadAllOrderIntoTable() {
+    $("#order_table").empty();
+    for (var i of cartDB) {
+        /*create a html row*/
+        let row = "<tr><td>" + i.id + "</td><td>" + i.name + "</td><td>" + i.price + "</td><td>" + i.qty + "</td><td>" + i.total + "</td></tr>";
+        //set the row
+        $("#order_table").append(row);
+    }
+}
+
+$("#save_order").click(function () {
+    getOrderData();
+    loadAllOrderIntoTable();
+});
+
+function placeOrder() {
+    var orderOb = {
+        orderId: $("#orderId").val(),
+        date: $("#datepicker").val(),
+        customerId: $("#exampleInputCustomerID").val(),
+        orderTotal:$("#exampleInputTotal_price").val(),
+        cartDb:cartDB,
+    }
+
+    $.ajax({
+        url: "order",
+        method: "POST",
+        contentType: "application/json", //You should state request's content type using MIME types
+        data: JSON.stringify(orderOb), // format js object to valid json string
+        success: function (res) {
+            if (res.status == 200) { // process is  ok
+                alert(res.message);
+            } else if (res.status == 400) { // there is a problem with the client side
+                alert(res.message);
+            } else {
+                alert(res.data); // else maybe there is an exception
+            }
+        },
+        error: function (ob, errorStus) {
+            console.log(ob); // other errors
+        }
+    });
+}
