@@ -10,10 +10,18 @@ $("#dropdown_customer").click(function () {
 
 function addCustomerdataIntodropDown() {
     $("#dropdown_customer").empty();
-    for (var i in customerDB) {
-        $("#dropdown_customer").append('<option>' + customerDB[i].name + '</option>');
-    }
-
+    console.log("A");
+    $.ajax({
+        url: "customer?option=GETALL",
+        method: "GET",
+        // dataType:"json", // please convert the response into JSON
+        success: function (resp) {
+            console.log("F");
+            for (const customer of resp.data) {
+                $("#dropdown_customer").append('<option>' + customer.name + '</option>');
+            }
+        }
+    });
 }
 
 function addItemDataIntodropDown() {
