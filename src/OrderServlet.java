@@ -1,9 +1,7 @@
+import classes.OrderDetailsDTO;
 import javafx.scene.control.Alert;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
-import javax.json.JsonReader;
+import javax.json.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,10 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/order")
 public class OrderServlet extends HttpServlet {
@@ -23,12 +19,30 @@ public class OrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JsonReader reader = Json.createReader(req.getReader());
         JsonObject jsonObject = reader.readObject();
+
         String orderId = jsonObject.getString("orderId");
         String date = jsonObject.getString("date");
         String customerId = jsonObject.getString("customerId");
         String total = jsonObject.getString("orderTotal");
-        String cartDb = jsonObject.getString("cartDb");
+
+        JsonArray cartDb = jsonObject.getJsonArray("cartDb");
+
         PrintWriter writer = resp.getWriter();
+
+        ArrayList<OrderDetailsDTO> OrderDTO = new ArrayList<OrderDetailsDTO>();
+
+        for (JsonValue cart : cartDb) {
+
+            OrderDTO.add(new OrderDetailsDTO(cart.asJsonObject().getString("id"), cart.asJsonObject().getString("name"),
+                    cart.asJsonObject().getString("price"), cart.asJsonObject().getInt("qty"),
+                    cart.asJsonObject().getInt("total")));
+
+//            System.out.println(cart.asJsonObject().getString("id"));
+//            System.out.println(cart.asJsonObject().getString("name"));
+//            System.out.println(cart.asJsonObject().getString("price"));
+//            System.out.println(cart.asJsonObject().getInt("qty"));
+//            System.out.println(cart.asJsonObject().getInt("total"));
+        }
 
         resp.setContentType("application/json");
 
@@ -77,12 +91,14 @@ public class OrderServlet extends HttpServlet {
 //        }
 //
 //        return false;
+        OrderDetailsServlet orderDetailsServlet = new OrderDetailsServlet();
 
+        Connection connection=null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/JavaEE_POS", "root", "1234");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/JavaEE_POS", "root", "1234");
 
-//            connection.setAutoCommit(false);
+            connection.setAutoCommit(false);
 
             PreparedStatement pstm = connection.prepareStatement("Insert into Orders values(?,?,?,?)");
             pstm.setObject(1, orderId);
@@ -91,51 +107,77 @@ public class OrderServlet extends HttpServlet {
             pstm.setObject(3, total);
 
             if (pstm.executeUpdate() > 0) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Success").show();
-//                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-//                objectBuilder.add("status", 200);
-//                objectBuilder.add("message", "Successfully Updated");
-//                objectBuilder.add("data", "");
-//                writer.print(objectBuilder.build());
-                 for (int i = 0; i < cartDb.length(); i++) {
-//                     var orderDetails = new OrdersDetailsDTO(orderId, customerId, cartDB[i].id, cartDB[i].price, cartDB[i].qty, cartDB[i].total);
-//                     orderDetailsDB.push(orderDetails);
-//
-//                     for (let j = 0; j < itemDB.length; j++) {
-//                         if (cartDB[i].id == itemDB[j].id) {
-//                             (itemDB[j].qty) = (+itemDB[j].qty) - (+cartDB[i].qty);
-//                         }
-//                     }
-//                     System.out.println(cartDb[i].id);
-                 }
 
-//                if (saveOrderDetail(customerOrder.getCustomerOrderID(), customerOrder.getItems())){
-//                    con.commit();
-//                    return true;
-//                }else{
-//                    con.rollback();
-//                    return false;
-//                }
+                if (orderDetailsServlet.saveOrderDetail(orderId, customerId, OrderDTO)) {
+                    connection.commit();
+                } else {
+                    connection.rollback();
+                }
             } else {
-//                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-//                objectBuilder.add("status", 400);
-//                objectBuilder.add("message", "Update Failed");
-//                objectBuilder.add("data", "");
-//                writer.print(objectBuilder.build());
+                connection.rollback();
             }
 
-        } catch (ClassNotFoundException e) {
-            JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-            objectBuilder.add("status", 500);
-            objectBuilder.add("message", "Update Failed");
-            objectBuilder.add("data", e.getLocalizedMessage());
-            writer.print(objectBuilder.build());
         } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+
+                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+                objectBuilder.add("status", 200);
+                objectBuilder.add("data", "");
+                objectBuilder.add("message", "Successfully Added");
+                writer.print(objectBuilder.build());
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter writer = resp.getWriter();
+        String date;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        ResultSet rst = DriverManager.getConnection("jdbc:mysql://localhost:3306/JavaEE_POS", "root", "1234")
+                .prepareStatement("SELECT orderId FROM Orders ORDER BY orderId DESC LIMIT 1").executeQuery();
+        if (rst.next()){
+            int tempId = Integer.
+                    parseInt(rst.getString(1).split("-")[1]);
+            tempId=tempId+1;
+            if (tempId<9){
+                date = "O-00"+tempId;
+                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+                objectBuilder.add("status", 200);
+                objectBuilder.add("data", date);
+                writer.print(objectBuilder.build());
+            }else if(tempId<99){
+                date = "O-0"+tempId;
+                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+                objectBuilder.add("status", 200);
+                objectBuilder.add("data", date);
+                writer.print(objectBuilder.build());
+            }else{
+                date = "O-"+tempId;
+                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+                objectBuilder.add("status", 200);
+                objectBuilder.add("data", date);
+                writer.print(objectBuilder.build());
+            }
+
+        }else{
+            date = "O-001";
             JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-            objectBuilder.add("status", 500);
-            objectBuilder.add("message", "Update Failed");
-            objectBuilder.add("data", throwables.getLocalizedMessage());
+            objectBuilder.add("status", 200);
+            objectBuilder.add("data", date);
             writer.print(objectBuilder.build());
+        }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
         }
     }
 }

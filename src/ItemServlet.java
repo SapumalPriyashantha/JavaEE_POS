@@ -234,4 +234,14 @@ public class ItemServlet extends HttpServlet {
         }
     }
 
+    public boolean updateItem(String itemId, int qty) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.jdbc.Driver");
+        PreparedStatement stm = DriverManager.getConnection("jdbc:mysql://localhost:3306/JavaEE_POS", "root", "1234").prepareStatement
+                ("UPDATE Item SET itemQTY=(itemQTY-" + qty + ") WHERE itemId='" + itemId + "'");
+//        PreparedStatement stm = DbConnection.getInstance().getConnection()
+//                .prepareStatement
+//                        ("UPDATE ITEM SET qtyOnHand=(qtyOnHand-" + qty
+//                                + ") WHERE code='" + itemCode + "'");
+        return stm.executeUpdate()>0;
+    }
 }

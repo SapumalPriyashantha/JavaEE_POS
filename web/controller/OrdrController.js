@@ -86,7 +86,7 @@ function getOrderData() {
                 alert("Quantity size is insufficient for order");
             }
         } else {
-            var cart = new CartDTO(item_id, item_name, item_price, item_qty, item_total);
+            var cart = new CartDTO(item_id, item_name, item_price, +item_qty, item_total);
             cartDB.push(cart);
             countAllItemTotal();
         }
@@ -168,14 +168,45 @@ function placeOrder() {
         success: function (res) {
             if (res.status == 200) { // process is  ok
                 alert(res.message);
-            } else if (res.status == 400) { // there is a problem with the client side
-                alert(res.message);
-            } else {
-                alert(res.data); // else maybe there is an exception
+                clearInputFeilds();
             }
         },
         error: function (ob, errorStus) {
             console.log(ob); // other errors
         }
     });
+}
+
+function generateOrderId() {
+    // if (orderDB.length == 0) {
+    //     let startOrderNumber = "O-001";
+    //     $("#orderId").val(startOrderNumber);
+    // } else (orderDB.length != 0)
+    // {
+    //     let num = orderDB.length + 1;
+    //     if (num < 9) {
+    //         let pre_num = "O-00"
+    //         $("#orderId").val(pre_num + (+num));
+    //     } else if (num < 99) {
+    //         let pre_num = "O-0"
+    //         $("#orderId").val(pre_num + (+num));
+    //     } else {
+    //         let pre_num = "O-"
+    //         $("#orderId").val(pre_num + (+num));
+    //     }
+    // }
+    $.ajax({
+        url: "order",
+        method: "GET",
+        success: function (res) {
+            if (res.status == 200) { // process is  ok
+                $("#orderId").val(res.data);
+                clearInputFeilds();
+            }
+        },
+        error: function (ob, errorStus) {
+            console.log(ob); // other errors
+        }
+    });
+
 }
