@@ -1,4 +1,5 @@
 import classes.OrderDetailsDTO;
+import com.sun.org.apache.xalan.internal.xsltc.trax.XSLTCSource;
 import javafx.scene.control.Alert;
 
 import javax.json.*;
@@ -22,6 +23,7 @@ public class OrderServlet extends HttpServlet {
 
         String orderId = jsonObject.getString("orderId");
         String date = jsonObject.getString("date");
+        System.out.println(date);
         String customerId = jsonObject.getString("customerId");
         String total = jsonObject.getString("orderTotal");
 
@@ -36,62 +38,9 @@ public class OrderServlet extends HttpServlet {
             OrderDTO.add(new OrderDetailsDTO(cart.asJsonObject().getString("id"), cart.asJsonObject().getString("name"),
                     cart.asJsonObject().getString("price"), cart.asJsonObject().getInt("qty"),
                     cart.asJsonObject().getInt("total")));
-
-//            System.out.println(cart.asJsonObject().getString("id"));
-//            System.out.println(cart.asJsonObject().getString("name"));
-//            System.out.println(cart.asJsonObject().getString("price"));
-//            System.out.println(cart.asJsonObject().getInt("qty"));
-//            System.out.println(cart.asJsonObject().getInt("total"));
         }
 
         resp.setContentType("application/json");
-
-//        Connection con=null;
-//        try {
-//            con= DbConnection.getInstance().getConnection();
-//            con.setAutoCommit(false);
-//            PreparedStatement stm =con.
-//                    prepareStatement("INSERT INTO CustomerOrder VALUES(?,?,?,?,?,?,?)");
-//
-//
-//            stm.setObject(1, customerOrder.getCustomerOrderID());
-//            stm.setObject(2, customerOrder.getCustomerOrderDate());
-//            stm.setObject(3, customerOrder.getCustomerOrderDeliveryDate());
-//            stm.setObject(4, customerOrder.getCustomerId());
-//            stm.setObject(5, customerOrder.getTotalCost());
-//            stm.setObject(6, customerOrder.getTotalDiscount());
-//            stm.setObject(7, customerOrder.getStatus());
-//
-//            if (stm.executeUpdate() > 0){
-//
-//                if (saveOrderDetail(customerOrder.getCustomerOrderID(), customerOrder.getItems())){
-//                    con.commit();
-//                    return true;
-//                }else{
-//                    con.rollback();
-//                    return false;
-//                }
-//            }else{
-//                con.rollback();
-//                return false;
-//            }
-//
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }finally {
-//            try {
-//
-//                con.setAutoCommit(true);
-//
-//            } catch (SQLException throwables) {
-//                throwables.printStackTrace();
-//            }
-//        }
-//
-//        return false;
-        OrderDetailsServlet orderDetailsServlet = new OrderDetailsServlet();
 
         Connection connection=null;
         try {
@@ -104,12 +53,20 @@ public class OrderServlet extends HttpServlet {
             pstm.setObject(1, orderId);
             pstm.setObject(2, date);
             pstm.setObject(3, customerId);
-            pstm.setObject(3, total);
+            pstm.setObject(4, total);
 
             if (pstm.executeUpdate() > 0) {
 
-                if (orderDetailsServlet.saveOrderDetail(orderId, customerId, OrderDTO)) {
+                if (saveOrderDetail(connection,orderId, customerId, OrderDTO)) {
                     connection.commit();
+                    connection.setAutoCommit(true);
+
+                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+                objectBuilder.add("status", 200);
+                objectBuilder.add("data", "");
+                objectBuilder.add("message", "Successfully Order Add");
+                writer.print(objectBuilder.build());
+
                 } else {
                     connection.rollback();
                 }
@@ -121,49 +78,72 @@ public class OrderServlet extends HttpServlet {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                connection.setAutoCommit(true);
+        }
+    }
 
-                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-                objectBuilder.add("status", 200);
-                objectBuilder.add("data", "");
-                objectBuilder.add("message", "Successfully Added");
-                writer.print(objectBuilder.build());
+    private boolean saveOrderDetail(Connection connection, String orderId, String customerId, ArrayList<OrderDetailsDTO> orderDTO) throws SQLException {
+        for (OrderDetailsDTO temp : orderDTO
+        ) {
+            PreparedStatement stm =connection.
+                    prepareStatement("INSERT INTO OrderDetails VALUES(?,?,?,?,?,?)");
+            stm.setObject(1, orderId);
+            stm.setObject(2, customerId);
+            stm.setObject(3, temp.getItemId());
+            stm.setObject(4, temp.getItemPrice());
+            stm.setObject(5, temp.getQty());
+            stm.setObject(6, temp.getTotal());
+            if (stm.executeUpdate() > 0) {
 
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                if (updateQty(connection,temp.getItemId(), temp.getQty())){
+
+                }else{
+                    return false;
+                }
+
+            } else {
+                return false;
             }
         }
+        return true;
+    }
+
+    private boolean updateQty(Connection connection, String itemId, int qty) throws SQLException {
+        PreparedStatement stm = connection.prepareStatement
+                        ("UPDATE Item SET itemQTY=(itemQTY-" + qty
+                                + ") WHERE itemId='" + itemId + "'");
+        return stm.executeUpdate()>0;
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer = resp.getWriter();
-        String date;
+        resp.setContentType("application/json");
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
         ResultSet rst = DriverManager.getConnection("jdbc:mysql://localhost:3306/JavaEE_POS", "root", "1234")
                 .prepareStatement("SELECT orderId FROM Orders ORDER BY orderId DESC LIMIT 1").executeQuery();
+
+            PrintWriter writer = resp.getWriter();
+            JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+            String date;
+
         if (rst.next()){
             int tempId = Integer.
                     parseInt(rst.getString(1).split("-")[1]);
             tempId=tempId+1;
-            if (tempId<9){
+            if (tempId<=9){
                 date = "O-00"+tempId;
-                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+
                 objectBuilder.add("status", 200);
                 objectBuilder.add("data", date);
                 writer.print(objectBuilder.build());
-            }else if(tempId<99){
+            }else if(tempId<=99){
                 date = "O-0"+tempId;
-                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
                 objectBuilder.add("status", 200);
                 objectBuilder.add("data", date);
                 writer.print(objectBuilder.build());
             }else{
                 date = "O-"+tempId;
-                JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
                 objectBuilder.add("status", 200);
                 objectBuilder.add("data", date);
                 writer.print(objectBuilder.build());
@@ -171,7 +151,6 @@ public class OrderServlet extends HttpServlet {
 
         }else{
             date = "O-001";
-            JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
             objectBuilder.add("status", 200);
             objectBuilder.add("data", date);
             writer.print(objectBuilder.build());

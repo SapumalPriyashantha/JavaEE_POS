@@ -129,9 +129,11 @@ function clearInputFeilds() {
     $("#exampleInputItem_Id_1").val(null);
     $("#exampleInputItem_Price").val(null);
     $("#exampleInputItem_QTyOnHand").val(null);
+    $("#exampleInputOrder_QTy").val(null);
 
     $("#exampleInputTotal_price").val(null);
     $("#exampleInputCash").val(null);
+    $("#exampleInputRemaining").val(null);
 
     $("#exampleInputCustomerID").val(null);
 }
@@ -143,6 +145,7 @@ function loadAllOrderIntoTable() {
         let row = "<tr><td>" + i.id + "</td><td>" + i.name + "</td><td>" + i.price + "</td><td>" + i.qty + "</td><td>" + i.total + "</td></tr>";
         //set the row
         $("#order_table").append(row);
+
     }
 }
 
@@ -169,6 +172,9 @@ function placeOrder() {
             if (res.status == 200) { // process is  ok
                 alert(res.message);
                 clearInputFeilds();
+                generateOrderId();
+                cartDB.splice(0, cartDB.length);
+                $("#order_table").empty();
             }
         },
         error: function (ob, errorStus) {
@@ -178,23 +184,6 @@ function placeOrder() {
 }
 
 function generateOrderId() {
-    // if (orderDB.length == 0) {
-    //     let startOrderNumber = "O-001";
-    //     $("#orderId").val(startOrderNumber);
-    // } else (orderDB.length != 0)
-    // {
-    //     let num = orderDB.length + 1;
-    //     if (num < 9) {
-    //         let pre_num = "O-00"
-    //         $("#orderId").val(pre_num + (+num));
-    //     } else if (num < 99) {
-    //         let pre_num = "O-0"
-    //         $("#orderId").val(pre_num + (+num));
-    //     } else {
-    //         let pre_num = "O-"
-    //         $("#orderId").val(pre_num + (+num));
-    //     }
-    // }
     $.ajax({
         url: "order",
         method: "GET",
